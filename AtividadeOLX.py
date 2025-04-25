@@ -10,17 +10,17 @@ html = driver.page_source
 soup = BeautifulSoup(html, 'html.parser')
 driver.quit()
 
-anuncios = soup.find_all('section', class_='AdCard_root__Jkql_ AdCard_vertical__GTiaJ')
+anuncios = soup.find_all('section', class_='olx-adcard')
 lista_anuncios = []
 for anuncio in anuncios:
-    links = anuncio.find_all('a', class_='AdCard_link__4c7W6', href=True)
+    links = anuncio.find_all('a', class_='olx-adcard__link', href=True)
     for link in links:
         lista_anuncios.append(link['href'])
 
 
 informacoes_carros = []
 
-for url_anuncio in lista_anuncios:
+for url_anuncio in lista_anuncios[0:3]:
     print(f"Acessando: {url_anuncio}")
     driver = webdriver.Firefox()
     driver.get(url_anuncio)
@@ -46,6 +46,6 @@ for url_anuncio in lista_anuncios:
 
 # Exibir os dados extraídos
 for i, info in enumerate(informacoes_carros):
-    print(f"\n🔹 Anúncio {i+1}")
+    print(f"\n🔹 Anúncio {i}")
     for chave, valor in info.items():
         print(f"{chave}: {valor}")
