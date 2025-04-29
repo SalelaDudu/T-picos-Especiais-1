@@ -44,7 +44,6 @@ for url_anuncio in lista_anuncios[0:3]:
     
     informacoes_carros.append(dados)
 
-# Exibir os dados extraídos
 for i, info in enumerate(informacoes_carros):
     print(f"\n🔹 Anúncio {i}")
     for chave, valor in info.items():
