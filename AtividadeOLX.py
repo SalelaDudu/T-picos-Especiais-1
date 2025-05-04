@@ -28,12 +28,14 @@ for url_anuncio in lista_anuncios[0:3]:
     html = driver.page_source
     driver.quit()
 
-    soup = BeautifulSoup(html, 'html.parser')
-    
-    
-    info_divs = soup.find_all('div', class_='ad__sc-2h9gkk-1')
-
     dados = {}
+    soup = BeautifulSoup(html, 'html.parser')
+    info_divs = soup.find_all('div', class_='ad__sc-2h9gkk-1')
+    preco = soup.find("span","olx-text olx-text--title-large olx-text--block")
+    cidade = soup.find_all("span","olx-text olx-text--body-small olx-text--block olx-text--regular ad__sc-k5plwo-1 idmeSY")
+    
+    dados['cidade'] = cidade[1].get_text().split(',')[1].split('-')[0].strip()
+    dados['preço'] = preco.get_text().replace("R$","").replace(".","").strip()
     for div in info_divs:
         label = div.find('span')
         valor = div.find('a') or div.find_all('span')[-1]
