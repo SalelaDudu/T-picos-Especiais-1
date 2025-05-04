@@ -20,7 +20,7 @@ for anuncio in anuncios:
 
 informacoes_carros = []
 
-for url_anuncio in lista_anuncios[0:3]:
+for url_anuncio in lista_anuncios[0:1]:
     print(f"Acessando: {url_anuncio}")
     driver = webdriver.Firefox()
     driver.get(url_anuncio)
