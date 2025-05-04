@@ -105,10 +105,10 @@ for i in informacoes_carros:
         input_sedan.click()
     else:
         input_hatch.click()
-    if i['Cor']:        
-        selecionar_cor(driver,i['Cor'])
-    else:
-        selecionar_cor(driver,'BancoEscuro')
+        
+    cor = i.get('Cor', 'CorInexistente')
+    selecionar_cor(driver, cor)
+
     input_valor.send_keys(i['preço'])
     input_municipio.send_keys(i['cidade'])
     register_buton.click()
